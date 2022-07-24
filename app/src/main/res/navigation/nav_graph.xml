@@ -9,5 +9,18 @@
         android:id="@+id/navigation_main"
         android:name="com.dotrothschild.mysamplesensorswithlivedata.ui.main.MainFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_navigation_main_to_navigation_rank"
+            app:destination="@id/navigation_rank" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_rank"
+        android:name="com.dotrothschild.mysamplesensorswithlivedata.ui.rank.RankFragment"
+        android:label="fragment_rank"
+        tools:layout="@layout/fragment_rank" >
+        <action
+            android:id="@+id/action_navigation_rank_to_navigation_main"
+            app:destination="@id/navigation_main" />
+    </fragment>
 </navigation>

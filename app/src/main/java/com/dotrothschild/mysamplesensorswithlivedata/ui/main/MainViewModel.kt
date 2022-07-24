@@ -12,10 +12,12 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.dotrothschild.mysamplesensorswithlivedata.R
+import com.dotrothschild.mysamplesensorswithlivedata.model.data.RankRepository
 
 // viewmodel only serves as a host for livedata
 //class MainViewModel(application: Application) : AndroidViewModel(application) {
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(
+    application: Application) : AndroidViewModel(application) {
     val azimuthLiveData = AzimuthLiveData()
 
     // inner class just to have access to application

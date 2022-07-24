@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">My Sample Sensors With Live Data</string>
     <string name="title_home">Home</string>
+    <string name="title_rank">Rank</string>
+    <string name="title_other">Other</string>
+    <string name="all_ranks">All Ranks</string>
+    <string name="image_of_rank">Image of rank</string>
 </resources>

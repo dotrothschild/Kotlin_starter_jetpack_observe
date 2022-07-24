@@ -15,7 +15,6 @@ import com.dotrothschild.mysamplesensorswithlivedata.databinding.FragmentMainBin
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-   // private lateinit var appViewModel: MainViewModel
    private val appViewModel by lazy {
        ViewModelProvider(this)[MainViewModel::class.java]
    }
@@ -24,7 +23,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-
         val textMessage:  TextView = binding.message
         appViewModel.azimuthLiveData.observe(viewLifecycleOwner) {
             textMessage.text = it.toString()
@@ -36,6 +34,4 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

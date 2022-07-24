@@ -4,4 +4,12 @@
         android:id="@+id/navigation_main"
         android:icon="@drawable/ic_home"
         android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_rank"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_rank" />
+    <item
+        android:id="@+id/navigation_other"
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_other" />
 </menu>
