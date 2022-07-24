@@ -2,35 +2,31 @@ package com.dotrothschild.mysamplesensorswithlivedata.ui.main
 
 import android.app.Application
 import android.content.Context
-import android.content.res.Configuration
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.dotrothschild.mysamplesensorswithlivedata.R
-import com.dotrothschild.mysamplesensorswithlivedata.model.data.RankRepository
+import kotlin.math.abs
 
-// viewmodel only serves as a host for livedata
+// view model only serves as a host for livedata
 //class MainViewModel(application: Application) : AndroidViewModel(application) {
 class MainViewModel(
     application: Application) : AndroidViewModel(application) {
     val azimuthLiveData = AzimuthLiveData()
 
     // inner class just to have access to application
-    inner class AzimuthLiveData( ) : LiveData<List<Double>>() //: LiveData<String>()
+    inner class AzimuthLiveData : LiveData<List<Double>>() //: LiveData<String>()
         , SensorEventListener {
         private val VALUE_DRIFT = 0.05f
         //hold copies of the accelerometer and magnetometer data
         private var mAccelerometerData = FloatArray(3)
         private var mMagnetometerData = FloatArray(3)
-        val rotationMatrix = FloatArray(9)  // could this be in onSensorChanged() ??
-        val orientationValues = FloatArray(3)  // could this be in onSensorChanged() ??
-        var outputPitch: Int = 0
-        var outputAzimiuth: Int = 0
+        private val rotationMatrix = FloatArray(9)  // could this be in onSensorChanged() ??
+        private val orientationValues = FloatArray(3)  // could this be in onSensorChanged() ??
+
         private val sensorManager
             get() = getApplication<Application>().getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -60,11 +56,11 @@ class MainViewModel(
                 var azimuth = orientationValues[0] * (180/Math.PI)
                 if (azimuth < 0) {azimuth += 360}
                 var pitch = orientationValues[1] * (180/Math.PI) // positive points down, higher - is bigger angle
-                var roll = orientationValues[2] * (180/Math.PI) // negative is left doww
-                if (Math.abs(pitch) < VALUE_DRIFT) {
+                var roll = orientationValues[2] * (180/Math.PI) // negative is left down
+                if (abs(pitch) < VALUE_DRIFT) {
                     pitch = 0.0
                 }
-                if (Math.abs(roll) < VALUE_DRIFT) {
+                if (abs(roll) < VALUE_DRIFT) {
                     roll = 0.0
                 }
                 //string postValue("Azimuth as degrees: $azimuth \n pitch as degrees: $pitch \n roll as degrees: $roll") // sensor name: ${event.sensor.name} Incline array: $inclinationArray[0]") (pitch -45 degrees means tilt up 45 degrees

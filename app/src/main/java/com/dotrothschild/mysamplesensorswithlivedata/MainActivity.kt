@@ -1,11 +1,12 @@
 package com.dotrothschild.mysamplesensorswithlivedata
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.dotrothschild.mysamplesensorswithlivedata.databinding.ActivityMainBinding
+import com.dotrothschild.mysamplesensorswithlivedata.model.data.OtherRepository
 import com.dotrothschild.mysamplesensorswithlivedata.model.data.RankRepository
 import com.dotrothschild.mysamplesensorswithlivedata.ui.AppViewModel
 import com.dotrothschild.mysamplesensorswithlivedata.ui.AppViewModelFactory
@@ -14,13 +15,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appViewModel: AppViewModel
     private lateinit var _binding: ActivityMainBinding
     private val binding get() = _binding
-    lateinit var bottomMenuFragment: GetBottomMenuFragment
+    private lateinit var bottomMenuFragment: GetBottomMenuFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appViewModel = ViewModelProvider(
             this,
             AppViewModelFactory(
+                OtherRepository,
                 RankRepository,
                 applicationContext
             )

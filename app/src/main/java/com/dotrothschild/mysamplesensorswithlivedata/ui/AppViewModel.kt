@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dotrothschild.mysamplesensorswithlivedata.model.Rank
+import com.dotrothschild.mysamplesensorswithlivedata.model.data.OtherRepository
 import com.dotrothschild.mysamplesensorswithlivedata.model.data.RankRepository
 
 class AppViewModel
     (
+    val otherRepository: OtherRepository,
     val rankRepository: RankRepository,
     applicationContext: Context
 ) : ViewModel() {
@@ -15,6 +17,7 @@ class AppViewModel
 }
 
 class AppViewModelFactory(
+    private val otherRepository: OtherRepository,
     private val rankRepository: RankRepository,
     private val applicationContext: Context
 ) : ViewModelProvider.Factory {
@@ -23,6 +26,7 @@ class AppViewModelFactory(
         if (modelClass.isAssignableFrom(AppViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return AppViewModel(
+                otherRepository,
                 rankRepository,
                 applicationContext
             ) as T

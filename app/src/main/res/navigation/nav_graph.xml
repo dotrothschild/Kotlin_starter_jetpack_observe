@@ -23,4 +23,9 @@
             android:id="@+id/action_navigation_rank_to_navigation_main"
             app:destination="@id/navigation_main" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_other"
+        android:name="com.dotrothschild.mysamplesensorswithlivedata.ui.other.OtherFragment"
+        android:label="fragment_other"
+        tools:layout="@layout/fragment_other" />
 </navigation>

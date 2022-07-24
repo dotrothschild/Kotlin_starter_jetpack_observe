@@ -1,37 +1,39 @@
-package com.dotrothschild.mysamplesensorswithlivedata.ui.rank
+package com.dotrothschild.mysamplesensorswithlivedata.ui.other
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import com.dotrothschild.mysamplesensorswithlivedata.databinding.FragmentRankBinding
+import com.dotrothschild.mysamplesensorswithlivedata.GetBottomMenuFragment
+import com.dotrothschild.mysamplesensorswithlivedata.databinding.FragmentOtherBinding
 import com.dotrothschild.mysamplesensorswithlivedata.flattenToList
 import com.dotrothschild.mysamplesensorswithlivedata.model.Rank
 import com.dotrothschild.mysamplesensorswithlivedata.ui.AppViewModel
+import com.dotrothschild.mysamplesensorswithlivedata.ui.rank.RankAdapter
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-class RankFragment : Fragment() {
-    private var _binding: FragmentRankBinding? = null
+class OtherFragment : Fragment() {
+    private var _binding: FragmentOtherBinding? = null
     private val binding get() = _binding!!
     private val appViewModel: AppViewModel by activityViewModels()
 
 
-    private lateinit var viewModel: RankViewModel
+    private lateinit var viewModel: OtherViewModel
     private lateinit var adapter: RankAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this)[RankViewModel::class.java]
-        _binding = FragmentRankBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this)[OtherViewModel::class.java]
+        _binding = FragmentOtherBinding.inflate(inflater, container, false)
 
         val scope = MainScope()
         scope.launch {
-            setupView(appViewModel.rankRepository.ranks.flattenToList())
+            setupView(appViewModel.otherRepository.others.flattenToList())
         }
         return binding.root
     }
@@ -39,7 +41,7 @@ class RankFragment : Fragment() {
     private fun setupView(flatList: List<Rank>) {
 
         binding.apply {
-           // topLayout.setBackgroundResource(R.drawable.cardview_bg)
+            // topLayout.setBackgroundResource(R.drawable.cardview_bg)
             adapter = RankAdapter(
                 requireContext(),
                 flatList
